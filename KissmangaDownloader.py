@@ -110,11 +110,12 @@ def ImagesLinkExtractor( Chapter_Link ):
 def ImageVerticalConcatination(ImgList):
 	import numpy,PIL,time 
 	from PIL import Image
-	
+	# Set up three empty lists for future use.
 	Imgs=[] ; ImgSize=[] ; CombinedImgs=[]
-	for OrigImg in ImgList:
+	# Open all the Downloaded images using Pything Image Library in a list.
+ 	for OrigImg in ImgList:
 		Imgs.append(PIL.Image.open(OrigImg))
-
+	# Get the size of the image width and 
 	for Img in Imgs:
 		ImgSize.append((numpy.sum(Img.size),Img.size))
 	ImgSize = sorted(ImgSize)
@@ -133,10 +134,11 @@ def ImageVerticalConcatination(ImgList):
 
 def main():
 	import re
-	URL = "https://kissmanga.com/Manga/The-Promised-Neverland"
-	# URL= "https://kissmanga.com/Manga/Omega-Labyrinth-Dengeki-Comic-Anthology"
-	# URL = "https://kissmanga.com/Manga/Immortal-Invincible"
 	# URL ="https://kissmanga.com/Manga/Solo-Leveling"
+	# Request URL from user.
+	URL = input("Please Enter the Manga URL")
+	print(URL)
+	exit()
 	# Extract Manga Name.
 	NameMatch = re.findall( r'(?<=Manga\/)(.+)(?=)' , str(URL))
 	global MangaName
