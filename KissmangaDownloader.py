@@ -113,7 +113,7 @@ def ImageVerticalConcatination(ImgList):
 	# Set up three empty lists for future use.
 	Imgs=[] ; ImgSize=[] ; CombinedImgs=[]
 	# Open all the Downloaded images using Pything Image Library in a list.
- 	for OrigImg in ImgList:
+	for OrigImg in ImgList:
 		Imgs.append(PIL.Image.open(OrigImg))
 	# Get the size of the image width and 
 	for Img in Imgs:
@@ -136,13 +136,13 @@ def main():
 	import re
 	# URL ="https://kissmanga.com/Manga/Solo-Leveling"
 	# Request URL from user.
-	URL = input("Please Enter the Manga URL")
-	print(URL)
-	exit()
+	URL = input("Please Enter the Manga URL\n")
+
 	# Extract Manga Name.
 	NameMatch = re.findall( r'(?<=Manga\/)(.+)(?=)' , str(URL))
 	global MangaName
 	MangaName = NameMatch[0]
+	print("Downloading: "+ MangaName)
 
 	if NameMatch:
 		# Check if there's already a folder else make a new one.
@@ -154,7 +154,6 @@ def main():
 			ImagesLinkExtractor(Chapter)
 	else:
 		print("Couldn't Extract Manga Name")
-
+	Finish=input("Done, Press Enter Key to Exit")
 if __name__=="__main__":
 	main()
-                                                                                                                
