@@ -1,17 +1,18 @@
-
 # Global Variables
+import os 
+
 CWD = os.getcwd()
 MangaName = ""
 
 # Disable Console print
 def blockPrint():
 	import sys, os
-    sys.stdout = open(os.devnull, 'w')
+	sys.stdout = open(os.devnull, 'w')
 
 # Restore  Console print
 def enablePrint():
 	import sys
-    sys.stdout = sys.__stdout__
+	sys.stdout = sys.__stdout__
 
 def ChaptersLinkGrabber( Manga_URL ):
 	import cfscrape,re
@@ -99,7 +100,7 @@ def ImagesLinkExtractor( Chapter_Link ):
 	enablePrint()
 	ImgList = []
 	ImageIndex = 0
-	print("Downloading Chapter "+ str(ChapterNumber[0]) +" Images")
+	print("Downloading Chapter "+ str(ChapterNumber[0]) +" Images",end =" ")
 	for ImgLink in ImgMatch:
 		if ImgLink:
 			urllib.request.urlretrieve( str(ImgLink) , str(ImageIndex)+".png")
@@ -116,7 +117,7 @@ def ImageVerticalConcatination(ImgList):
 	# Open all the Downloaded images using Pything Image Library in a list.
 	for OrigImg in ImgList:
 		Imgs.append(PIL.Image.open(OrigImg))
-	# Get the size of the image width and 
+		# Get the size of the image width and 
 	for Img in Imgs:
 		ImgSize.append((numpy.sum(Img.size),Img.size))
 	ImgSize = sorted(ImgSize)
@@ -129,7 +130,9 @@ def ImageVerticalConcatination(ImgList):
 	CombinedImgsNewV = numpy.vstack(CombinedImgs)
 	CombinedImgsNewV = PIL.Image.fromarray(CombinedImgsNewV)
 	CombinedImgsNewV.save("Vertical.png")
+	print(" --> Done")
 
+	# Deletes images and keep the vertical list only.
 	# for IMG in ImgList:
 		# os.remove(IMG)
 
