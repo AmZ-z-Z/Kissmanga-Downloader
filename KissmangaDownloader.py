@@ -1,16 +1,17 @@
+
 # Global Variables
-import sys, os
+CWD = os.getcwd()
+MangaName = ""
 
 # Disable Console print
 def blockPrint():
+	import sys, os
     sys.stdout = open(os.devnull, 'w')
 
 # Restore  Console print
 def enablePrint():
+	import sys
     sys.stdout = sys.__stdout__
-
-CWD = os.getcwd()
-MangaName = ""
 
 def ChaptersLinkGrabber( Manga_URL ):
 	import cfscrape,re
