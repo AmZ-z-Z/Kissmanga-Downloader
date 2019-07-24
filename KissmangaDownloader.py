@@ -1,6 +1,6 @@
 # Global Variables
 import os 
-
+#Dah el branch
 CWD = os.getcwd()
 MangaName = ""
 
