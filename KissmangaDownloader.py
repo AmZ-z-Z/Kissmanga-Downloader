@@ -141,7 +141,7 @@ def ImageVerticalConcatination(ImgList):
 	CombinedImgsNewV = numpy.vstack(CombinedImgs)
 	CombinedImgsNewV = PIL.Image.fromarray(CombinedImgsNewV)
 # Save stack vertically.	
-	CombinedImgsNewV.save("Vertical.png")
+	CombinedImgsNewV.save("00-Vertical.png")
 	print(" Done ")
 
 # Deletes images and keep the vertical list only. ( Optional )
