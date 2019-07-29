@@ -23,7 +23,8 @@ def ChaptersLinkGrabber( Manga_URL ):
 # Returns a CloudflareScraper instance to bypass its DDOS protection
 	web_scraper = cfscrape.create_scraper()  
 	Result = web_scraper.get( Manga_URL )
-	
+# Notify User that script is extracting chapter links.
+	print("Extracting Chapters Links")
 # Checks of Request succeeded(200) or not
 	if str(Result) == '<Response [200]>':
 	# Contains all the HTML data of the web-page.
@@ -44,6 +45,7 @@ def ChaptersLinkGrabber( Manga_URL ):
 		return ChaptersList
 
 def ImagesLinkExtractor( Chapter_Link ):
+	from sys import stdout
 	import time,re,urllib.request,os
 	from bs4 import BeautifulSoup
 	from selenium import webdriver
@@ -103,8 +105,10 @@ def ImagesLinkExtractor( Chapter_Link ):
 	
 	ImgList = []
 	ImageIndex = 0
+
 # Print on the console the current Chapter being downloaded.
-	print("Downloading Chapter "+ str(ChapterNumber[0]) +" Images",end ="\t")
+	print("Downloading Chapter "+ str(ChapterNumber[0]) +" Images",end = ' ')
+	stdout.flush()
 # Download Images and numbering same as the ImageIndex Counter then appending that name in a list for the last function usage.
 	for ImgLink in ImgMatch:
 		if ImgLink:
@@ -145,8 +149,8 @@ def ImageVerticalConcatination(ImgList):
 	print(" Done ")
 
 # Deletes images and keep the vertical list only. ( Optional )
-	# for IMG in ImgList:
-		# os.remove(IMG)
+	for IMG in ImgList:
+		os.remove(IMG)
 
 def main():
 	import re
