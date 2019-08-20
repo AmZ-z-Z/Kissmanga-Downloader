@@ -1,6 +1,6 @@
 # Global Variables
 import os 
-#Dah el branch
+
 CWD = os.getcwd()
 MangaName = ""
 
@@ -13,6 +13,19 @@ def blockPrint():
 def enablePrint():
 	import sys
 	sys.stdout = sys.__stdout__
+
+def DependenciesHandler():
+	import subprocess
+
+	try:
+		import selenium
+	except:
+		print("Selenium Not found!")
+		os.system('pip install -U selenium')
+		print('Done')
+		
+	import selenium
+	print("succeeded")
 
 def ChaptersLinkGrabber( Manga_URL ):
 	import cfscrape,re
@@ -151,6 +164,8 @@ def ImageVerticalConcatination(ImgList):
 def main():
 	import re
 	# URL ="https://kissmanga.com/Manga/Solo-Leveling"
+	DependenciesHandler()
+	quit()
 	# Request URL from user.
 	URL = input("Please Enter the Manga URL\n")
 
